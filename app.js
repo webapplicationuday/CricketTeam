@@ -32,6 +32,32 @@ app.get("/players/", async (request, response) => {
  *
  FROM
  cricket_team;`;
-  const playersArray = await database.all(getPlayersQuery);
+  const playersArray = await db.all(getPlayersQuery);
   response.send(playersArray);
+}); 
+
+// add players
+
+app.post("/players/", async (request, response) => {
+  const playerDetails = request.body;
+  const { playerName, jerseyNumber, role } = PlayerDetails;
+  const addPlayerQuery = `
+    INSERT INTO
+    cricket_team ( 
+    player_name,
+    jersey_number,
+    role)
+    VALUES
+      (
+         ${playerName},
+         ${jerseyNumber},
+         ${role}
+         
+      );`;
+
+  const dbResponse = await db.run(addPlayerQuery);
+  const addId = dbResponse.lastID;
+  response.send("Add Player To Team");
 });
+
+
