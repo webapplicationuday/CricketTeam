@@ -110,4 +110,4 @@ app.delete("/players/:playerId/", async (request, response) => {
 });
 
 
-module.exports() = app ;
+module.exports = app ;
