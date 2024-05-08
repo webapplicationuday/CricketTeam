@@ -58,7 +58,7 @@ app.post("/players/", async (request, response) => {
 
   const dbResponse = await db.run(addPlayerQuery);
   const addId = dbResponse.lastID;
-  response.send("Add Player To Team");
+  response.send("Player Added to Team");
 });
 
 // GET One Player
@@ -110,4 +110,4 @@ app.delete("/players/:playerId/", async (request, response) => {
 });
 
 
-
+module.exports() = app ;
