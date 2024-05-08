@@ -41,7 +41,7 @@ app.get("/players/", async (request, response) => {
 
 app.post("/players/", async (request, response) => {
   const playerDetails = request.body;
-  const { playerName, jerseyNumber, role } = PlayerDetails;
+  const { playerName, jerseyNumber, role } = playerDetails;
   const addPlayerQuery = `
     INSERT INTO
     cricket_team ( 
