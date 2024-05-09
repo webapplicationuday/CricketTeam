@@ -25,7 +25,16 @@ const initializeDBAndServer = async () => {
   }
 };
 
-initializeDBAndServer();
+initializeDBAndServer(); 
+
+const convertDbObjectToResponseObject = (dbObject) => {
+  return {
+    playerId: dbObject.player_id,
+    playerName: dbObject.player_name,
+    jerseyNumber: dbObject.jersey_number,
+    role: dbObject.role,
+  };
+};
 
 app.get("/players/", async (request, response) => {
   const getPlayersQuery = `
@@ -34,7 +43,11 @@ app.get("/players/", async (request, response) => {
  FROM
  cricket_team;`;
   const playersArray = await db.all(getPlayersQuery);
-  response.send(playersArray);
+  response.send(
+ playersArray.map((eachPlayer) =>
+convertDbObjectToResponseObject(eachPlayer)
+)
+);
 });
 
 // add players
