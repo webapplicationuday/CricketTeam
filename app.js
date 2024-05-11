@@ -86,7 +86,7 @@ app.get("/players/:playerId/", async (request, response) => {
     WHERE
       player_id = ${playerId};`;
   const player = await db.get(getOnePlayerQuery);
-  response.send(player);
+  response.send(convertDbObjectToResponseObject(player));
 });
 
 // update player
